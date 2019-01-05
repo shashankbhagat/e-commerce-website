@@ -1,0 +1,39 @@
+﻿@model XYZShoppingMVC.Models.ProductsVM
+
+@{
+    ViewBag.Title = "ShowProducts";
+}
+
+<h2>Products</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                @Html.DropDownListFor(model => model.catselected, Model.cList)
+            </div>
+            <div>
+                @{
+                    Html.RenderPartial("_ShowProducts", Model.pList);
+                }
+            </div>
+        </div>
+    </div>
+    <div id="divStatus">
+        @ViewBag.msg
+    </div>
+
+}
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("#catselected").change(function () {
+                $(this).closest('form').submit();
+            })
+        });
+    </script>
+    }

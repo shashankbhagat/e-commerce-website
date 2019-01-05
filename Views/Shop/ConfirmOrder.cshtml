@@ -1,0 +1,69 @@
+﻿@model IEnumerable<XYZShoppingMVC.Models.OrderDetails>
+
+@{
+    ViewBag.Title = "ConfirmOrder";
+}
+
+<h2>ConfirmOrder</h2>
+
+<div>
+    <h4>OrderDetails</h4>
+    <hr />
+    
+@using (Html.BeginForm())
+{
+    <dl class="dl-horizontal">
+        @foreach (var item in Model)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.OrderNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.ItemNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemDesc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.ItemDesc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Qty)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Qty)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Price)
+            </dd>
+        }
+
+    </dl>
+    <div class="btn">
+        <input type="submit" value="Confirm" class="btn btn-default" />
+    </div>
+    
+}
+    
+</div>
+<p>
+    @Html.ActionLink("Back to Cart", "Cart")
+</p>

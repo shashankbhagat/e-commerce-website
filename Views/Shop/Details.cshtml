@@ -1,0 +1,73 @@
+﻿@model XYZShoppingMVC.Models.ProductsDetailVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Products</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div style="width:40%;float:left" class="img-thumbnail">
+            <img src="~/PImages/@Url.Content(Model.Prod.ProductImage)" />
+        </div>
+        <div style="width:60%;float:right">            
+                <div class="col-md-10">
+                    <h3>
+                        @Html.DisplayTextFor(model => model.Prod.ProductSDesc)                        
+                    </h3>
+                </div>
+               
+                <div class="col-md-10">
+                    <h3>
+                        Price $ @Html.DisplayTextFor(model => model.Prod.Price)
+                    </h3>                    
+                </div>
+
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model=>model.Prod.ProductLDesc)
+            </div>
+           
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Quantity)
+                        </div>
+                    </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(model => model.Prod.InStock, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.DisplayTextFor(model => model.Prod.InStock)
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add to Cart" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ShowProducts")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
